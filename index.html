@@ -71,6 +71,85 @@
   }
   .nav-cta:hover { background: var(--gold); color: var(--deep-forest) !important; }
 
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--deep-forest);
+    border-radius: 2px;
+    transition: all 0.35s ease;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE NAV OVERLAY ── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--deep-forest);
+    z-index: 150;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .mobile-nav.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .mobile-nav a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--cream);
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    letter-spacing: 0.06em;
+    transition: color 0.3s;
+    display: block;
+    text-align: center;
+  }
+  .mobile-nav a:hover { color: var(--gold); }
+  .mobile-nav .mob-cta {
+    margin-top: 1.5rem;
+    background: var(--gold);
+    color: var(--deep-forest) !important;
+    padding: 0.9rem 2.8rem;
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem !important;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .mobile-nav-logo {
+    position: absolute;
+    top: 1.6rem; left: 5%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.06em;
+  }
+  .mobile-nav-logo span { color: var(--gold); }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -890,6 +969,117 @@
   .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
   .hero-stats { animation: fadeUp 0.9s 0.7s ease both; }
 
+  /* ══════════════════════════════════
+     RESPONSIVE — TABLET (≤ 900px)
+  ══════════════════════════════════ */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { display: none; }
+    .hero-left {
+      padding: 9rem 6% 10rem;
+      min-height: 100vh;
+    }
+    .hero-stats { left: 6%; gap: 2rem; }
+
+    .about-section { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 6%; }
+    .about-img-wrap { height: 340px; }
+
+    .classes-grid { grid-template-columns: 1fr 1fr; }
+    .class-card.featured { grid-row: span 1; grid-column: span 2; }
+
+    .programs-grid { grid-template-columns: 1fr; border: none; gap: 0; }
+    .program-item { border-right: none; border-bottom: 1px solid rgba(245,240,232,0.08); }
+    .program-item:last-child { border-bottom: none; }
+
+    .testi-grid { grid-template-columns: 1fr 1fr; }
+
+    .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .price-card.popular { transform: none; order: -1; }
+
+    .teacher-section { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 6%; }
+    .teacher-img-wrap { height: 380px; }
+
+    .cta-section { flex-direction: column; gap: 2.5rem; text-align: center; }
+
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .footer-brand { grid-column: span 2; }
+  }
+
+  /* ══════════════════════════════════
+     RESPONSIVE — MOBILE (≤ 600px)
+  ══════════════════════════════════ */
+  @media (max-width: 600px) {
+    /* Nav */
+    nav { padding: 1.1rem 5%; }
+
+    /* Hero */
+    .hero-left { padding: 8rem 5% 9rem; }
+    .hero-title { font-size: 3rem; }
+    .hero-sub { font-size: 0.9rem; max-width: 100%; margin-bottom: 2.5rem; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; }
+    .hero-stats { gap: 1.8rem; }
+    .stat-num { font-size: 2rem; }
+    .om-watermark { font-size: 10rem; }
+
+    /* Sections */
+    section { padding: 4.5rem 5%; }
+
+    /* About */
+    .about-section { padding: 4.5rem 5%; }
+    .about-img-wrap { height: 280px; }
+    .about-accent-text { font-size: 2.2rem; }
+    .about-features { grid-template-columns: 1fr; gap: 1rem; }
+
+    /* Classes */
+    .classes-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .classes-grid { grid-template-columns: 1fr; }
+    .class-card.featured { grid-column: span 1; }
+
+    /* Programs */
+    .programs-section { padding: 4.5rem 5%; }
+    .program-item { padding: 2rem 1.5rem; }
+
+    /* Testi */
+    .testi-grid { grid-template-columns: 1fr; margin-top: 2.5rem; }
+
+    /* Pricing */
+    .pricing-grid { max-width: 100%; }
+    .price-card { padding: 2rem; }
+
+    /* Teacher */
+    .teacher-section { padding: 4.5rem 5%; }
+    .teacher-img-wrap { height: 260px; }
+    .teacher-cert-badge { padding: 1rem 1.4rem; max-width: 170px; bottom: 1.5rem; }
+    .cert-value { font-size: 1.3rem; }
+
+    /* CTA */
+    .cta-section { padding: 3.5rem 5%; }
+    .cta-section h2 { font-size: 1.9rem; }
+    .btn-dark { width: 100%; text-align: center; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; padding-bottom: 3rem; }
+    .footer-brand { grid-column: span 1; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+
+    /* Section titles */
+    .section-title { font-size: 2rem; }
+  }
+
+  /* ══════════════════════════════════
+     RESPONSIVE — SMALL (≤ 380px)
+  ══════════════════════════════════ */
+  @media (max-width: 380px) {
+    .hero-title { font-size: 2.5rem; }
+    .hero-stats { flex-wrap: wrap; gap: 1.2rem; bottom: 2rem; }
+    .logo { font-size: 1.6rem; }
+    .mobile-nav a { font-size: 2rem; }
+  }
+
   /* ── FLOATING OM ── */
   .om-watermark {
     position: absolute;
@@ -908,6 +1098,9 @@
 <!-- NAV -->
 <nav>
   <div class="logo">Demo<span>Yogo</span></div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#classes">Classes</a></li>
@@ -917,6 +1110,17 @@
     <li><a href="#" class="nav-cta">Book Free Class</a></li>
   </ul>
 </nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-logo">Demo<span>Yogo</span></div>
+  <a href="#about" class="mob-link">About</a>
+  <a href="#classes" class="mob-link">Classes</a>
+  <a href="#programs" class="mob-link">Programs</a>
+  <a href="#pricing" class="mob-link">Pricing</a>
+  <a href="#contact" class="mob-link">Contact</a>
+  <a href="#" class="mob-cta mob-link">Book Free Class</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -1365,7 +1569,7 @@
       <h4>Contact</h4>
       <div class="contact-item"><span>📍</span><span>Sector 14, Gurugram,<br>Haryana 122001</span></div>
       <div class="contact-item"><span>📞</span><span>+91 98765 43210</span></div>
-      <div class="contact-item"><span>✉️</span><span>hello@demoyogo.com</span></div>
+      <div class="contact-item"><span>✉️</span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="573f323b3b381733323a382e3830387934383a">[email&#160;protected]</a></span></div>
       <div class="contact-item"><span>🕐</span><span>Mon–Sat: 6am – 8pm<br>Sun: 7am – 12pm</span></div>
     </div>
   </div>
@@ -1375,7 +1579,24 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.style.display = mobileNav.style.display === 'flex' ? 'none' : 'flex';
+    setTimeout(() => mobileNav.classList.toggle('open'), 10);
+  });
+  // Close on link click
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      setTimeout(() => mobileNav.style.display = 'none', 400);
+    });
+  });
+
   // Smooth nav shadow on scroll
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
@@ -1396,12 +1617,4 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.class-card, .testi-card, .price-card, .program-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-    observer.observe(el);
-  });
-</script>
-</body>
-</html>
+  document.querySelectorAll('.class-card, .testi-card, .price-card, .p
