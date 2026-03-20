@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DemoYogo — Elevate Your Practice</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --warm-white: #FAF8F4;
+    --deep-forest: #1C2B1E;
+    --sage: #6B8C6E;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --terracotta: #B85C38;
+    --charcoal: #2C2C2C;
+    --mist: #E8EDE9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 5%;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    transition: all 0.4s;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--deep-forest);
+  }
+  .logo span { color: var(--gold); }
+
+  .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--charcoal);
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--deep-forest);
+    color: var(--cream) !important;
+    padding: 0.65rem 1.6rem;
+    border-radius: 2px;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.14em !important;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--deep-forest) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--deep-forest);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 10rem 5% 6rem 7%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute; top: -20%; left: -10%;
+    width: 60%; height: 80%;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--cream);
+    margin-bottom: 2rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.65);
+    max-width: 380px;
+    margin-bottom: 3.5rem;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--deep-forest);
+    padding: 1rem 2.4rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--cream); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid rgba(245,240,232,0.35);
+    color: var(--cream);
+    padding: 1rem 2.4rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    position: absolute; bottom: 3rem; left: 7%;
+    display: flex; gap: 3rem;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: rgba(245,240,232,0.5);
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  .hero-right {
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* SVG Yoga illustration placeholder */
+  .hero-visual {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, var(--mist) 0%, var(--cream) 100%);
+  }
+
+  .yoga-illustration {
+    width: 75%; max-width: 380px;
+    opacity: 0.95;
+  }
+
+  /* Decorative circles */
+  .hero-right::before {
+    content: '';
+    position: absolute; top: 15%; right: -5%;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.3);
+    pointer-events: none;
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; bottom: 20%; left: 5%;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    border: 1px solid rgba(107,140,110,0.3);
+    pointer-events: none;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-strip {
+    background: var(--gold);
+    padding: 1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 28s linear infinite;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--deep-forest);
+  }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 7rem 7%; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block; width: 30px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--deep-forest);
+    max-width: 560px;
+  }
+  .section-title em { font-style: italic; color: var(--sage); }
+
+  /* ── ABOUT ── */
+  .about-section {
+    background: var(--warm-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-img-wrap {
+    position: relative;
+    height: 520px;
+  }
+
+  .about-img-main {
+    width: 78%;
+    height: 88%;
+    background: linear-gradient(145deg, var(--mist), var(--sage) 120%);
+    border-radius: 3px;
+    position: absolute; bottom: 0; left: 0;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .about-img-accent {
+    width: 52%;
+    height: 52%;
+    background: var(--deep-forest);
+    border-radius: 3px;
+    position: absolute; top: 0; right: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .about-accent-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--gold);
+    text-align: center;
+    line-height: 1;
+  }
+  .about-accent-text small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: rgba(245,240,232,0.6);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .feat-item {
+    display: flex; gap: 0.8rem; align-items: flex-start;
+  }
+  .feat-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 0.55rem;
+    flex-shrink: 0;
+  }
+  .feat-item p {
+    font-size: 0.88rem;
+    color: var(--charcoal);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── CLASSES ── */
+  .classes-section { background: var(--cream); }
+
+  .classes-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+
+  .classes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .class-card {
+    background: var(--warm-white);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s;
+    cursor: pointer;
+  }
+  .class-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(28,43,30,0.12);
+  }
+
+  .class-card.featured {
+    grid-row: span 2;
+    background: var(--deep-forest);
+  }
+
+  .card-img {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .class-card.featured .card-img { height: 280px; }
+
+  .card-img-bg {
+    position: absolute; inset: 0;
+    transition: transform 0.6s;
+  }
+  .class-card:hover .card-img-bg { transform: scale(1.05); }
+
+  /* Color-coded class types */
+  .bg-hatha { background: linear-gradient(145deg, #8FA886, #4A6B4F); }
+  .bg-power { background: linear-gradient(145deg, #C47A4A, #8B3A1A); }
+  .bg-vinyasa { background: linear-gradient(145deg, #6B8C9E, #2C4A5C); }
+  .bg-meditation { background: linear-gradient(145deg, #9C8FC4, #4A3A6B); }
+  .bg-therapeutic { background: linear-gradient(145deg, #C4A87A, #8B6A2A); }
+  .bg-teacher { background: linear-gradient(145deg, #1C2B1E, #354E38); }
+
+  .card-icon {
+    z-index: 1;
+    font-size: 3.5rem;
+    opacity: 0.9;
+  }
+
+  .card-body { padding: 1.6rem; }
+
+  .card-tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .class-card.featured .card-tag { color: var(--gold-light); }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: var(--deep-forest);
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+
+  .class-card.featured .card-title { color: var(--cream); font-size: 1.9rem; }
+
+  .card-desc {
+    font-size: 0.85rem;
+    color: #777;
+    line-height: 1.7;
+  }
+  .class-card.featured .card-desc { color: rgba(245,240,232,0.6); }
+
+  .card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 1.6rem;
+    border-top: 1px solid rgba(28,43,30,0.08);
+  }
+  .class-card.featured .card-footer { border-top-color: rgba(245,240,232,0.1); }
+
+  .card-duration {
+    font-size: 0.78rem;
+    color: #999;
+  }
+  .class-card.featured .card-duration { color: rgba(245,240,232,0.5); }
+
+  .card-arrow {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+  .class-card:hover .card-arrow {
+    background: var(--gold);
+    color: var(--deep-forest);
+  }
+
+  /* ── PROGRAMS ── */
+  .programs-section { background: var(--deep-forest); }
+
+  .programs-section .section-title { color: var(--cream); max-width: 700px; }
+  .programs-section .section-title em { color: var(--gold-light); }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 4rem;
+    border: 1px solid rgba(245,240,232,0.08);
+  }
+
+  .program-item {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid rgba(245,240,232,0.08);
+    transition: background 0.3s;
+  }
+  .program-item:last-child { border-right: none; }
+  .program-item:hover { background: rgba(201,168,76,0.06); }
+
+  .prog-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: rgba(201,168,76,0.25);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .prog-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .prog-desc {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 1.5rem;
+  }
+
+  .prog-link {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: gap 0.3s;
+  }
+  .prog-link:hover { gap: 0.9rem; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section { background: var(--warm-white); }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .testi-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    border-radius: 4px;
+    position: relative;
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .testi-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-4px);
+  }
+
+  .testi-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .testi-text {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  .testi-author {
+    display: flex; align-items: center; gap: 1rem;
+  }
+
+  .testi-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cream);
+    flex-shrink: 0;
+  }
+
+  .testi-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--deep-forest);
+  }
+  .testi-role {
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.06em;
+  }
+
+  /* Stars */
+  .stars { color: var(--gold); font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+
+  /* ── PRICING ── */
+  .pricing-section { background: var(--cream); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+
+  .price-card {
+    background: var(--warm-white);
+    border-radius: 4px;
+    padding: 2.5rem;
+    border: 1px solid rgba(28,43,30,0.08);
+    transition: all 0.3s;
+    position: relative;
+  }
+  .price-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+
+  .price-card.popular {
+    background: var(--deep-forest);
+    border-color: var(--gold);
+    transform: translateY(-12px);
+  }
+
+  .popular-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--deep-forest);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.35rem 1.2rem;
+    border-radius: 2px;
+  }
+
+  .price-name {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+  }
+  .price-card.popular .price-name { color: var(--gold-light); }
+
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: var(--deep-forest);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .price-card.popular .price-amount { color: var(--cream); }
+
+  .price-period {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 2rem;
+  }
+  .price-card.popular .price-period { color: rgba(245,240,232,0.5); }
+
+  .price-features { list-style: none; margin-bottom: 2.5rem; }
+  .price-features li {
+    font-size: 0.88rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(28,43,30,0.06);
+    display: flex; align-items: center; gap: 0.8rem;
+    color: #555;
+  }
+  .price-card.popular .price-features li {
+    border-bottom-color: rgba(245,240,232,0.08);
+    color: rgba(245,240,232,0.7);
+  }
+  .price-features li::before {
+    content: '✓';
+    color: var(--gold);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .price-btn {
+    display: block;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid var(--deep-forest);
+    color: var(--deep-forest);
+    background: transparent;
+  }
+  .price-btn:hover { background: var(--deep-forest); color: var(--cream); }
+  .price-card.popular .price-btn {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--deep-forest);
+  }
+  .price-card.popular .price-btn:hover { background: var(--cream); }
+
+  /* ── TEACHER ── */
+  .teacher-section {
+    background: var(--warm-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .teacher-img-wrap {
+    position: relative;
+    height: 560px;
+  }
+
+  .teacher-img-main {
+    width: 82%;
+    height: 90%;
+    background: linear-gradient(145deg, var(--sage), var(--deep-forest));
+    border-radius: 3px;
+    position: absolute; top: 0; right: 0;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .teacher-cert-badge {
+    position: absolute; bottom: 4rem; left: 0;
+    background: var(--gold);
+    padding: 1.5rem 2rem;
+    border-radius: 3px;
+    max-width: 200px;
+  }
+
+  .cert-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--deep-forest);
+    margin-bottom: 0.3rem;
+  }
+  .cert-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--deep-forest);
+    line-height: 1;
+  }
+  .cert-sub { font-size: 0.7rem; color: rgba(28,43,30,0.6); margin-top: 0.3rem; }
+
+  .teacher-content .section-title { margin-bottom: 1.5rem; }
+
+  .teacher-content p {
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .teacher-credentials {
+    display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;
+  }
+  .cred-item {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 1rem 1.5rem;
+    background: var(--cream);
+    border-radius: 3px;
+    border-left: 3px solid var(--gold);
+  }
+  .cred-icon { font-size: 1.4rem; }
+  .cred-text { font-size: 0.88rem; font-weight: 500; color: var(--deep-forest); }
+  .cred-sub { font-size: 0.75rem; color: #999; }
+
+  /* ── CTA STRIP ── */
+  .cta-section {
+    background: var(--gold);
+    padding: 5rem 7%;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    color: var(--deep-forest);
+    max-width: 540px;
+    line-height: 1.2;
+  }
+
+  .cta-section h2 em { font-style: italic; }
+
+  .btn-dark {
+    display: inline-block;
+    background: var(--deep-forest);
+    color: var(--cream);
+    padding: 1.1rem 2.8rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: all 0.3s;
+  }
+  .btn-dark:hover { background: var(--cream); color: var(--deep-forest); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep-forest);
+    padding: 5rem 7% 2.5rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-brand .logo { display: block; margin-bottom: 1.2rem; color: var(--cream); }
+  .footer-brand p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.45);
+    max-width: 280px;
+    margin-bottom: 2rem;
+  }
+
+  .social-links { display: flex; gap: 0.8rem; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(245,240,232,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: rgba(245,240,232,0.5);
+    transition: all 0.3s;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  .footer-col h4 {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-col ul a {
+    font-size: 0.86rem;
+    color: rgba(245,240,232,0.45);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-col ul a:hover { color: var(--gold); }
+
+  .contact-item {
+    display: flex; gap: 0.8rem;
+    font-size: 0.86rem;
+    color: rgba(245,240,232,0.45);
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+  }
+  .contact-item span:first-child { color: var(--gold); flex-shrink: 0; }
+
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.25);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left > * { animation: fadeUp 0.9s ease both; }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
+  .hero-stats { animation: fadeUp 0.9s 0.7s ease both; }
+
+  /* ── FLOATING OM ── */
+  .om-watermark {
+    position: absolute;
+    top: 50%; right: 5%;
+    transform: translateY(-50%);
+    font-size: 16rem;
+    color: rgba(201,168,76,0.04);
+    font-family: serif;
+    pointer-events: none;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Demo<span>Yogo</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#classes">Classes</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" class="nav-cta">Book Free Class</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="om-watermark">ॐ</div>
+    <div class="hero-tag">Est. 2012 · Yoga Alliance Certified</div>
+    <h1 class="hero-title">
+      Find Your<br><em>Balance.</em><br>Transform Your<br>Life.
+    </h1>
+    <p class="hero-sub">
+      A sanctuary of mindful movement, breath, and stillness. 
+      Expert-led yoga programs crafted for every level — from curious beginners to dedicated practitioners.
+    </p>
+    <div class="hero-btns">
+      <a href="#classes" class="btn-primary">Explore Classes</a>
+      <a href="#programs" class="btn-outline">Teacher Training</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2K+</div>
+        <div class="stat-label">Students</div>
+      </div>
+      <div>
+        <div class="stat-num">24</div>
+        <div class="stat-label">Yoga Forms</div>
+      </div>
+      <div>
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Years</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <svg class="yoga-illustration" viewBox="0 0 320 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Decorative circles -->
+        <circle cx="160" cy="210" r="155" stroke="#C9A84C" stroke-width="0.5" opacity="0.3"/>
+        <circle cx="160" cy="210" r="120" stroke="#6B8C6E" stroke-width="0.5" opacity="0.25"/>
+        <!-- Lotus base petals -->
+        <ellipse cx="160" cy="340" rx="40" ry="18" fill="#6B8C6E" opacity="0.3"/>
+        <ellipse cx="120" cy="350" rx="35" ry="15" fill="#6B8C6E" opacity="0.2" transform="rotate(-15,120,350)"/>
+        <ellipse cx="200" cy="350" rx="35" ry="15" fill="#6B8C6E" opacity="0.2" transform="rotate(15,200,350)"/>
+        <!-- Body seated meditation pose -->
+        <ellipse cx="160" cy="290" rx="55" ry="22" fill="#354E38" opacity="0.9"/><!-- hips/crossed legs -->
+        <ellipse cx="115" cy="295" rx="28" ry="14" fill="#354E38" opacity="0.8" transform="rotate(-8,115,295)"/>
+        <ellipse cx="205" cy="295" rx="28" ry="14" fill="#354E38" opacity="0.8" transform="rotate(8,205,295)"/>
+        <!-- Torso -->
+        <path d="M145 230 Q160 225 175 230 L178 285 Q160 290 142 285 Z" fill="#4A6B4F"/>
+        <!-- Head -->
+        <circle cx="160" cy="210" r="28" fill="#C9A884"/>
+        <!-- Hair -->
+        <ellipse cx="160" cy="196" rx="28" ry="14" fill="#2C1A0E"/>
+        <ellipse cx="160" cy="192" rx="16" ry="10" fill="#2C1A0E"/>
+        <!-- Meditation mudra hands -->
+        <ellipse cx="148" cy="278" rx="14" ry="8" fill="#C9A884" opacity="0.9"/>
+        <ellipse cx="172" cy="278" rx="14" ry="8" fill="#C9A884" opacity="0.9"/>
+        <!-- Om symbol -->
+        <text x="160" y="260" text-anchor="middle" font-size="14" fill="#C9A84C" opacity="0.7" font-family="serif">ॐ</text>
+        <!-- Aura glow -->
+        <circle cx="160" cy="210" r="45" fill="none" stroke="#C9A84C" stroke-width="0.8" opacity="0.2" stroke-dasharray="4 8"/>
+        <!-- Decorative dots -->
+        <circle cx="80" cy="150" r="3" fill="#C9A84C" opacity="0.4"/>
+        <circle cx="240" cy="170" r="3" fill="#C9A84C" opacity="0.4"/>
+        <circle cx="70" cy="280" r="2" fill="#6B8C6E" opacity="0.5"/>
+        <circle cx="250" cy="260" r="2" fill="#6B8C6E" opacity="0.5"/>
+        <circle cx="100" cy="120" r="1.5" fill="#C9A84C" opacity="0.3"/>
+        <circle cx="220" cy="130" r="1.5" fill="#C9A84C" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    &nbsp;&nbsp;Hatha Yoga &nbsp;·&nbsp; Power Yoga &nbsp;·&nbsp; Ashtanga Vinyasa &nbsp;·&nbsp; Meditation &nbsp;·&nbsp; Teacher Training &nbsp;·&nbsp; Therapeutic Yoga &nbsp;·&nbsp; Core Yoga &nbsp;·&nbsp; Cardio Yoga &nbsp;·&nbsp; Restorative Yoga &nbsp;·&nbsp; Online &amp; Offline Classes &nbsp;·&nbsp;
+    Hatha Yoga &nbsp;·&nbsp; Power Yoga &nbsp;·&nbsp; Ashtanga Vinyasa &nbsp;·&nbsp; Meditation &nbsp;·&nbsp; Teacher Training &nbsp;·&nbsp; Therapeutic Yoga &nbsp;·&nbsp; Core Yoga &nbsp;·&nbsp; Cardio Yoga &nbsp;·&nbsp; Restorative Yoga &nbsp;·&nbsp; Online &amp; Offline Classes &nbsp;·&nbsp;
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-img-wrap">
+    <div class="about-img-main">
+      <svg viewBox="0 0 260 380" width="200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Warrior pose silhouette -->
+        <circle cx="130" cy="60" r="25" fill="rgba(245,240,232,0.85)"/>
+        <ellipse cx="128" cy="58" rx="12" ry="8" fill="rgba(44,30,14,0.6)"/>
+        <path d="M130 85 L125 160 L115 240" stroke="rgba(245,240,232,0.8)" stroke-width="8" stroke-linecap="round"/>
+        <path d="M130 85 L135 160 L200 200" stroke="rgba(245,240,232,0.8)" stroke-width="8" stroke-linecap="round"/>
+        <path d="M125 160 L70 140" stroke="rgba(245,240,232,0.7)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M135 160 L190 145" stroke="rgba(245,240,232,0.7)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M115 240 L80 310 L75 370" stroke="rgba(245,240,232,0.8)" stroke-width="8" stroke-linecap="round"/>
+        <path d="M200 200 L210 280 L215 370" stroke="rgba(245,240,232,0.8)" stroke-width="8" stroke-linecap="round"/>
+        <!-- Ground line -->
+        <line x1="50" y1="368" x2="240" y2="368" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="about-img-accent">
+      <div class="about-accent-text">
+        12+<small>Years of<br>Excellence</small>
+      </div>
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-title">A Holistic Journey to <em>Mind, Body</em> & Soul</h2>
+    <br>
+    <p>
+      DemoYogo was born from a singular belief — that yoga is not just a physical practice but a transformative science. Our studio brings together ancient wisdom and modern technique to create an environment where every student can thrive.
+    </p>
+    <p>
+      From beginners stepping onto the mat for the first time to advanced practitioners deepening their journey, we offer a curated range of programs designed with intention, precision, and care.
+    </p>
+    <div class="about-features">
+      <div class="feat-item"><div class="feat-dot"></div><p>Yoga Alliance RYS 200 certified curriculum</p></div>
+      <div class="feat-item"><div class="feat-dot"></div><p>Offline & live online sessions available</p></div>
+      <div class="feat-item"><div class="feat-dot"></div><p>Therapeutic & medical yoga support</p></div>
+      <div class="feat-item"><div class="feat-dot"></div><p>Small batch sizes for personal attention</p></div>
+      <div class="feat-item"><div class="feat-dot"></div><p>Diet & nutrition guidance included</p></div>
+      <div class="feat-item"><div class="feat-dot"></div><p>Community of 2,000+ practitioners</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section class="classes-section" id="classes">
+  <div class="classes-header">
+    <div>
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">24 Forms of <em>Yoga</em></h2>
+    </div>
+    <a href="#" class="btn-primary">View All Classes</a>
+  </div>
+  <div class="classes-grid">
+    <!-- Featured -->
+    <div class="class-card featured">
+      <div class="card-img">
+        <div class="card-img-bg bg-teacher"></div>
+        <div class="card-icon">🎓</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Signature Program</div>
+        <h3 class="card-title">200 Hours Teacher<br>Training Course</h3>
+        <p class="card-desc">Internationally recognized Yoga Alliance certified program. Become a confident, skilled yoga teacher ready for the global stage.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-duration">8 Weeks Intensive</span>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+    <!-- Regular cards -->
+    <div class="class-card">
+      <div class="card-img">
+        <div class="card-img-bg bg-hatha"></div>
+        <div class="card-icon">🌿</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Foundation</div>
+        <h3 class="card-title">Hatha Yoga</h3>
+        <p class="card-desc">Build strength, flexibility, and balance through classical postures and breathing techniques.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-duration">60 min · All levels</span>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+    <div class="class-card">
+      <div class="card-img">
+        <div class="card-img-bg bg-power"></div>
+        <div class="card-icon">🔥</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">High Energy</div>
+        <h3 class="card-title">Power Yoga</h3>
+        <p class="card-desc">Dynamic, fitness-based yoga to sculpt your body and ignite your inner fire.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-duration">60 min · Intermediate</span>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+    <div class="class-card">
+      <div class="card-img">
+        <div class="card-img-bg bg-vinyasa"></div>
+        <div class="card-icon">🌊</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Flow</div>
+        <h3 class="card-title">Ashtanga Vinyasa</h3>
+        <p class="card-desc">Breath-synchronized movement creating a moving meditation of grace and power.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-duration">75 min · Intermediate</span>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+    <div class="class-card">
+      <div class="card-img">
+        <div class="card-img-bg bg-meditation"></div>
+        <div class="card-icon">🧘</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Mind & Soul</div>
+        <h3 class="card-title">Mantra Jap Meditation</h3>
+        <p class="card-desc">Ancient sound vibration practices to calm the mind and elevate consciousness.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-duration">45 min · All levels</span>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+    <div class="class-card">
+      <div class="card-img">
+        <div class="card-img-bg bg-therapeutic"></div>
+        <div class="card-icon">💚</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Healing</div>
+        <h3 class="card-title">Therapeutic Personal Training</h3>
+        <p class="card-desc">One-on-one sessions addressing specific health concerns with expert guidance.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-duration">60 min · Personal</span>
+        <div class="card-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs-section" id="programs">
+  <div class="section-label" style="color:var(--gold-light)">Our Programs</div>
+  <h2 class="section-title">Structured Paths to <em>Transformation</em></h2>
+  <div class="programs-grid">
+    <div class="program-item">
+      <div class="prog-number">01</div>
+      <h3 class="prog-title">Group Sessions — Offline & Online</h3>
+      <p class="prog-desc">Energizing group classes in an inspiring studio environment or from the comfort of home via live stream. Flexible scheduling to suit your lifestyle.</p>
+      <a href="#" class="prog-link">Explore →</a>
+    </div>
+    <div class="program-item">
+      <div class="prog-number">02</div>
+      <h3 class="prog-title">200-Hr Teacher Training</h3>
+      <p class="prog-desc">A comprehensive, internationally accredited program covering asana, pranayama, anatomy, philosophy, and pedagogy. Begin your teaching journey.</p>
+      <a href="#" class="prog-link">Explore →</a>
+    </div>
+    <div class="program-item">
+      <div class="prog-number">03</div>
+      <h3 class="prog-title">Therapeutic One-on-One</h3>
+      <p class="prog-desc">Personalized yoga therapy sessions for weight management, back pain, stress, diabetes, and more. Includes diet consultation and lifestyle guidance.</p>
+      <a href="#" class="prog-link">Explore →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-label">Kind Words</div>
+  <h2 class="section-title">What Our <em>Students</em> Say</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <div class="testi-quote">"</div>
+      <p class="testi-text">DemoYogo changed my relationship with my body entirely. The instructors are not just teachers — they're guides who genuinely care about your progress and wellbeing.</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:var(--sage);">P</div>
+        <div>
+          <div class="testi-name">Priya Sharma</div>
+          <div class="testi-role">Student for 2 years</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <div class="testi-quote">"</div>
+      <p class="testi-text">I completed the 200-hour teacher training and it was the most transformative experience of my life. The curriculum is deep, the community is warm, and the certification opened global doors.</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:var(--terracotta);">R</div>
+        <div>
+          <div class="testi-name">Rahul Verma</div>
+          <div class="testi-role">Certified RYT 200</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <div class="testi-quote">"</div>
+      <p class="testi-text">The therapeutic personal training sessions helped me recover from chronic back pain in just 6 weeks. I'm now pain-free and more flexible than I've ever been in my forties.</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:var(--deep-forest);">A</div>
+        <div>
+          <div class="testi-name">Anjali Nair</div>
+          <div class="testi-role">Therapeutic Program</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-label">Membership</div>
+  <h2 class="section-title">Simple, <em>Transparent</em> Pricing</h2>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-name">Starter</div>
+      <div class="price-amount">₹1,499</div>
+      <div class="price-period">per month</div>
+      <ul class="price-features">
+        <li>8 Group Classes / month</li>
+        <li>Online &amp; Offline access</li>
+        <li>Basic asana library</li>
+        <li>Community forum access</li>
+      </ul>
+      <a href="#" class="price-btn">Get Started</a>
+    </div>
+    <div class="price-card popular">
+      <div class="popular-badge">Most Popular</div>
+      <div class="price-name">Premium</div>
+      <div class="price-amount">₹2,999</div>
+      <div class="price-period">per month</div>
+      <ul class="price-features">
+        <li>Unlimited Group Classes</li>
+        <li>2 Personal Sessions / month</li>
+        <li>Nutrition &amp; diet guidance</li>
+        <li>Priority batch selection</li>
+        <li>Teacher training discount</li>
+      </ul>
+      <a href="#" class="price-btn">Choose Premium</a>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Elite</div>
+      <div class="price-amount">₹5,499</div>
+      <div class="price-period">per month</div>
+      <ul class="price-features">
+        <li>Everything in Premium</li>
+        <li>6 Personal Sessions / month</li>
+        <li>Therapeutic consultation</li>
+        <li>Dedicated instructor</li>
+        <li>Retreat invitations</li>
+      </ul>
+      <a href="#" class="price-btn">Go Elite</a>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHER SECTION -->
+<section class="teacher-section" id="about-instructor">
+  <div class="teacher-img-wrap">
+    <div class="teacher-img-main">
+      <svg viewBox="0 0 240 360" width="180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tree pose silhouette -->
+        <circle cx="120" cy="55" r="26" fill="rgba(245,240,232,0.85)"/>
+        <ellipse cx="118" cy="52" rx="13" ry="9" fill="rgba(44,30,14,0.5)"/>
+        <line x1="120" y1="81" x2="120" y2="210" stroke="rgba(245,240,232,0.85)" stroke-width="9" stroke-linecap="round"/>
+        <path d="M120 130 L75 100" stroke="rgba(245,240,232,0.75)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M75 100 L60 75" stroke="rgba(245,240,232,0.65)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M120 130 L165 100" stroke="rgba(245,240,232,0.75)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M165 100 L180 75" stroke="rgba(245,240,232,0.65)" stroke-width="5" stroke-linecap="round"/>
+        <line x1="120" y1="210" x2="120" y2="340" stroke="rgba(245,240,232,0.85)" stroke-width="9" stroke-linecap="round"/>
+        <path d="M120 275 L80 300 L75 340" stroke="rgba(245,240,232,0.7)" stroke-width="7" stroke-linecap="round"/>
+        <line x1="60" y1="340" x2="185" y2="340" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+        <!-- Leaf detail at raised foot -->
+        <circle cx="152" cy="220" r="10" fill="rgba(201,168,76,0.3)"/>
+      </svg>
+    </div>
+    <div class="teacher-cert-badge">
+      <div class="cert-label">Certified By</div>
+      <div class="cert-value">Yoga Alliance</div>
+      <div class="cert-sub">RYS 200 · International</div>
+    </div>
+  </div>
+  <div class="teacher-content">
+    <div class="section-label">Your Guide</div>
+    <h2 class="section-title">Master Instructor <em>Ravi Kumar</em></h2>
+    <br>
+    <p>With over 12 years of dedicated practice and teaching, Ravi brings an extraordinary depth of knowledge spanning classical Hatha, Ashtanga, therapeutic applications, and meditation traditions.</p>
+    <p>Trained across India and internationally recognized, Ravi's teaching philosophy centers on meeting each student exactly where they are — and guiding them gently, powerfully forward.</p>
+    <div class="teacher-credentials">
+      <div class="cred-item">
+        <div class="cred-icon">🏅</div>
+        <div>
+          <div class="cred-text">Yoga Alliance RYT 500</div>
+          <div class="cred-sub">International certification</div>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">🧠</div>
+        <div>
+          <div class="cred-text">Specialization in Therapeutic Yoga</div>
+          <div class="cred-sub">Remedial &amp; rehabilitative applications</div>
+        </div>
+      </div>
+      <div class="cred-item">
+        <div class="cred-icon">🌍</div>
+        <div>
+          <div class="cred-text">2,000+ Students Trained Globally</div>
+          <div class="cred-sub">Online &amp; in-studio programs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to Begin Your <em>Yoga Journey?</em><br>Your first class is free.</h2>
+  <a href="#contact" class="btn-dark">Book Your Free Class</a>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Demo<span>Yogo</span></div>
+      <p>A premium yoga studio dedicated to your holistic wellbeing — body, mind, and spirit. Certified, passionate, transformative.</p>
+      <div class="social-links">
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">ig</a>
+        <a href="#" class="social-link">yt</a>
+        <a href="#" class="social-link">fb</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="#">Group Classes</a></li>
+        <li><a href="#">Teacher Training</a></li>
+        <li><a href="#">Personal Training</a></li>
+        <li><a href="#">Online Classes</a></li>
+        <li><a href="#">Meditation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Yoga Styles</h4>
+      <ul>
+        <li><a href="#">Hatha Yoga</a></li>
+        <li><a href="#">Power Yoga</a></li>
+        <li><a href="#">Ashtanga Vinyasa</a></li>
+        <li><a href="#">Core Yoga</a></li>
+        <li><a href="#">Cardio Yoga</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="contact-item"><span>📍</span><span>Sector 14, Gurugram,<br>Haryana 122001</span></div>
+      <div class="contact-item"><span>📞</span><span>+91 98765 43210</span></div>
+      <div class="contact-item"><span>✉️</span><span>hello@demoyogo.com</span></div>
+      <div class="contact-item"><span>🕐</span><span>Mon–Sat: 6am – 8pm<br>Sun: 7am – 12pm</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 DemoYogo. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<script>
+  // Smooth nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.boxShadow = '0 4px 30px rgba(28,43,30,0.08)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  // Simple intersection observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.opacity = '1';
+        el.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.class-card, .testi-card, .price-card, .program-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
