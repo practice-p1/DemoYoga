@@ -368,7 +368,98 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
 .confirm-success{display:none;background:var(--green-light);border:1px solid rgba(21,128,61,0.3);border-radius:14px;padding:20px;text-align:center;margin-top:14px}
 .confirm-success p{font-size:14px;color:var(--green);font-weight:600;line-height:1.6}
 
-/* ===== ANIMATIONS ===== */
+/* ===== IMAGE STYLES ===== */
+.img-cover{width:100%;height:100%;object-fit:cover;display:block}
+.img-rounded{border-radius:20px;overflow:hidden}
+
+/* Hero image overlay on right panel */
+.hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.22;z-index:0}
+
+/* Photo gallery strip */
+.photo-strip{display:grid;grid-template-columns:repeat(5,1fr);height:260px;overflow:hidden}
+.photo-strip-item{overflow:hidden;position:relative;cursor:pointer}
+.photo-strip-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
+.photo-strip-item:hover img{transform:scale(1.08)}
+.photo-strip-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(124,29,29,0.5),transparent);opacity:0;transition:opacity 0.3s}
+.photo-strip-item:hover::after{opacity:1}
+
+/* Benefits with background image */
+.benefits-section{position:relative}
+.benefits-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.benefits-bg img{width:100%;height:100%;object-fit:cover;opacity:0.05}
+.benefits-section>*{position:relative;z-index:1}
+
+/* Class cards with images */
+.full-class-card-img{width:100%;height:200px;object-fit:cover;display:block}
+.class-card-img-wrap{overflow:hidden;height:200px;position:relative}
+.class-card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.class-card-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(124,29,29,0.6))}
+.batch-card:hover .class-card-img-wrap img{transform:scale(1.05)}
+
+/* Gallery section */
+.gallery-section{padding:72px 48px;background:var(--off-white)}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:220px 220px;gap:12px;margin-top:36px}
+.gallery-item{overflow:hidden;border-radius:16px;position:relative;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item.tall{grid-row:span 2}
+.gallery-item.wide{grid-column:span 2}
+.gallery-item::after{content:'';position:absolute;inset:0;background:rgba(124,29,29,0);transition:background 0.3s}
+.gallery-item:hover::after{background:rgba(124,29,29,0.15)}
+
+/* About hero image */
+.about-hero-img{width:100%;height:100%;object-fit:cover;border-radius:20px}
+.about-img-wrap{border-radius:20px;overflow:hidden;height:360px}
+
+/* Instructor photo */
+.instructor-photo{width:100%;height:280px;object-fit:cover;border-radius:20px 20px 0 0}
+
+/* Testimonials with bg */
+.testi-card{position:relative;overflow:hidden}
+.testi-bg-img{position:absolute;bottom:0;right:0;width:80px;opacity:0.06}
+
+/* Schedule bg image */
+.schedule-preview{position:relative;overflow:hidden}
+.schedule-bg{position:absolute;inset:0;z-index:0}
+.schedule-bg img{width:100%;height:100%;object-fit:cover;opacity:0.12}
+.schedule-preview>*{position:relative;z-index:1}
+
+/* Pose image cards in classes */
+.pose-card{position:relative;border-radius:20px;overflow:hidden;cursor:pointer}
+.pose-card img{width:100%;height:240px;object-fit:cover;transition:transform 0.4s}
+.pose-card:hover img{transform:scale(1.05)}
+.pose-card-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px 18px;background:linear-gradient(to top,rgba(28,10,0,0.9),transparent)}
+.pose-card-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:white;margin-bottom:4px}
+.pose-card-level{font-size:11px;font-weight:600;color:var(--saffron-light);letter-spacing:0.08em;text-transform:uppercase}
+
+/* Full width banner */
+.fullwidth-banner{position:relative;height:320px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.fullwidth-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fullwidth-banner-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,29,29,0.82),rgba(217,119,6,0.6))}
+.fullwidth-banner-content{position:relative;z-index:2;text-align:center;color:white;padding:24px}
+.fullwidth-banner-content h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,44px);font-weight:700;margin-bottom:12px}
+.fullwidth-banner-content p{font-size:16px;opacity:0.85;margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* Image float in about */
+.about-float-imgs{position:relative;height:420px}
+.afl-main{position:absolute;top:0;left:0;width:78%;height:100%;object-fit:cover;border-radius:20px}
+.afl-accent{position:absolute;bottom:-20px;right:0;width:46%;height:55%;object-fit:cover;border-radius:16px;border:5px solid white;box-shadow:0 8px 32px rgba(0,0,0,0.18)}
+
+@media(max-width:768px){
+  .photo-strip{grid-template-columns:repeat(3,1fr);height:180px}
+  .photo-strip-item:nth-child(n+4){display:none}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gallery-item.tall{grid-row:span 1}
+  .gallery-item.wide{grid-column:span 2}
+  .gallery-section{padding:48px 20px}
+  .about-float-imgs{height:260px}
+  .fullwidth-banner{height:240px}
+  .pose-card img{height:180px}
+  .pose-grid{grid-template-columns:1fr 1fr!important}
+  .online-grid-top{grid-template-columns:1fr!important}
+  .online-grid-top>div:last-child{min-height:200px!important}
+}
+
 @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .page.active .hero-left{animation:fadeInUp 0.55s ease both}
 .page.active .hero-right{animation:fadeInUp 0.55s ease 0.1s both}
@@ -565,6 +656,7 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
       </div>
     </div>
     <div class="hero-right">
+      <img class="hero-bg-img" src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=900&auto=format&fit=crop&q=80" alt="yoga studio" loading="lazy">
       <!-- Timing Cards -->
       <div class="timing-cards">
         <div class="timing-card">
@@ -628,6 +720,15 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
     </div>
   </div>
 
+  <!-- Photo Strip -->
+  <div class="photo-strip">
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&auto=format&fit=crop&q=80" alt="yoga pose" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&auto=format&fit=crop&q=80" alt="meditation" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=400&auto=format&fit=crop&q=80" alt="yoga class" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=400&auto=format&fit=crop&q=80" alt="yoga stretch" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://thumbs.dreamstime.com/b/generated-image-women-exercising-bright-spacious-fitness-studio-group-yoga-training-physical-mental-well-being-433907682.jpg" alt="yoga outdoor" loading="lazy"></div>
+  </div>
+
   <!-- Benefits -->
   <section class="benefits-section">
     <div style="max-width:640px">
@@ -636,17 +737,18 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
       <p class="section-sub">Every class at PranaDhara is designed to deliver real, lasting benefits — physically, mentally, and spiritually.</p>
     </div>
     <div class="benefits-grid">
-      <div class="benefit-card"><span class="bc-emoji">🤸</span><div class="bc-title">Enhances Flexibility</div><p class="bc-desc">Regular practice gradually loosens muscles and connective tissue, improving your range of motion and ease of movement in daily life.</p></div>
-      <div class="benefit-card"><span class="bc-emoji">🛡️</span><div class="bc-title">Boosts Immunity</div><p class="bc-desc">Yoga stimulates the lymphatic system, reduces cortisol, and strengthens the body's natural defence mechanisms from within.</p></div>
-      <div class="benefit-card"><span class="bc-emoji">💪</span><div class="bc-title">Builds Strength</div><p class="bc-desc">Many poses require supporting your own bodyweight in new ways, building functional strength across every major muscle group.</p></div>
-      <div class="benefit-card"><span class="bc-emoji">⚖️</span><div class="bc-title">Weight Management</div><p class="bc-desc">Active yoga burns calories, builds lean muscle, and brings mindful awareness to eating habits — a holistic approach to a healthy weight.</p></div>
-      <div class="benefit-card"><span class="bc-emoji">⚡</span><div class="bc-title">Increases Energy Levels</div><p class="bc-desc">Breathwork and movement unlock dormant energy, reduce fatigue, and leave you feeling refreshed and vibrant throughout the day.</p></div>
-      <div class="benefit-card"><span class="bc-emoji">🌿</span><div class="bc-title">Supports Digestive Health</div><p class="bc-desc">Twisting and compressing poses massage the digestive organs, promoting gut health, reducing bloating, and improving metabolism.</p></div>
+      <div class="benefit-card"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&auto=format&fit=crop&q=80" alt="flexibility" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:14px"><span class="bc-emoji">🤸</span><div class="bc-title">Enhances Flexibility</div><p class="bc-desc">Regular practice gradually loosens muscles and connective tissue, improving your range of motion and ease of movement in daily life.</p></div>
+      <div class="benefit-card"><img src="https://media.istockphoto.com/id/1459538299/photo/woman-hands-or-lotus-pose-meditation-on-sunset-beach-ocean-or-sea-in-mental-health-mind.jpg?s=612x612&w=0&k=20&c=bV9hF5cTOLc8xjc7US3zqoknNXwyOTpzU0w-7HLw_EI=" alt="immunity" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:14px"><span class="bc-emoji">🛡️</span><div class="bc-title">Boosts Immunity</div><p class="bc-desc">Yoga stimulates the lymphatic system, reduces cortisol, and strengthens the body's natural defence mechanisms from within.</p></div>
+      <div class="benefit-card"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&auto=format&fit=crop&q=80" alt="strength" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:14px"><span class="bc-emoji">💪</span><div class="bc-title">Builds Strength</div><p class="bc-desc">Many poses require supporting your own bodyweight in new ways, building functional strength across every major muscle group.</p></div>
+      <div class="benefit-card"><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=400&auto=format&fit=crop&q=80" alt="weight" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:14px"><span class="bc-emoji">⚖️</span><div class="bc-title">Weight Management</div><p class="bc-desc">Active yoga burns calories, builds lean muscle, and brings mindful awareness to eating habits — a holistic approach to a healthy weight.</p></div>
+      <div class="benefit-card"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&auto=format&fit=crop&q=80" alt="energy" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:14px"><span class="bc-emoji">⚡</span><div class="bc-title">Increases Energy Levels</div><p class="bc-desc">Breathwork and movement unlock dormant energy, reduce fatigue, and leave you feeling refreshed and vibrant throughout the day.</p></div>
+      <div class="benefit-card"><img src="https://img.freepik.com/free-photo/young-woman-practicing-yoga-home_1303-20239.jpg" alt="digestive" loading="lazy" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:14px"><span class="bc-emoji">🌿</span><div class="bc-title">Supports Digestive Health</div><p class="bc-desc">Twisting and compressing poses massage the digestive organs, promoting gut health, reducing bloating, and improving metabolism.</p></div>
     </div>
   </section>
 
   <!-- Schedule Preview -->
   <section class="schedule-preview">
+    <div class="schedule-bg"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&auto=format&fit=crop&q=60" alt="" loading="lazy"></div>
     <div class="sp-grid">
       <div class="sp-text">
         <div class="section-tag" style="background:rgba(255,255,255,0.12);color:white">Our Schedule</div>
@@ -667,16 +769,40 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
     </div>
   </section>
 
-  <!-- Testimonials -->
+  <!-- Gallery -->
+  <section class="gallery-section">
+    <div class="section-tag">Our Studio</div>
+    <h2 class="section-title">Life at <em>PranaDhara</em></h2>
+    <div class="gallery-grid">
+      <div class="gallery-item tall"><img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&auto=format&fit=crop&q=80" alt="studio yoga class" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=500&auto=format&fit=crop&q=80" alt="yoga pose" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&auto=format&fit=crop&q=80" alt="meditation" loading="lazy"></div>
+      <div class="gallery-item wide"><img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=700&auto=format&fit=crop&q=80" alt="group yoga class" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=500&auto=format&fit=crop&q=80" alt="yoga stretch" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://png.pngtree.com/thumb_back/fh260/background/20240913/pngtree-group-yoga-class-in-nature-at-sunset-stock-photo-image_16174932.jpg" alt="outdoor yoga" loading="lazy"></div>
+    </div>
+  </section>
+
   <section class="testimonials">
     <div class="section-tag">Student Stories</div>
     <h2 class="section-title">What our students <em>say</em></h2>
     <div class="testi-grid">
-      <div class="testi-card"><div class="tc-stars">★★★★★</div><p class="tc-text">"Vijayashree madam is such a dedicated teacher. My flexibility has improved dramatically and my back pain has completely gone after 3 months."</p><p class="tc-author">— Kavitha R., Marathahalii</p></div>
-      <div class="testi-card"><div class="tc-stars">★★★★★</div><p class="tc-text">"The early morning online class is perfect for my schedule. Convenient, focused, and I feel so energised before work every day!"</p><p class="tc-author">— Sunita M., Whitefield</p></div>
-      <div class="testi-card"><div class="tc-stars">★★★★★</div><p class="tc-text">"My daughter loves the children's class. She's more focused at school and so much calmer. Best decision we made for our family."</p><p class="tc-author">— Meena L., Doddanekkundi</p></div>
+      <div class="testi-card"><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=400&auto=format&fit=crop&q=80" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;border-radius:10px;margin-bottom:16px"><div class="tc-stars">★★★★★</div><p class="tc-text">"Vijayashree madam is such a dedicated teacher. My flexibility has improved dramatically and my back pain has completely gone after 3 months."</p><p class="tc-author">— Kavitha R., Marathahalii</p></div>
+      <div class="testi-card"><img src="https://t4.ftcdn.net/jpg/02/57/78/51/360_F_257785182_Pn3xzAgigZNb6vdLsTi4ckGcNt3LXZEn.jpg" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;border-radius:10px;margin-bottom:16px"><div class="tc-stars">★★★★★</div><p class="tc-text">"The early morning online class is perfect for my schedule. Convenient, focused, and I feel so energised before work every day!"</p><p class="tc-author">— Sunita M., Whitefield</p></div>
+      <div class="testi-card"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&auto=format&fit=crop&q=80" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;border-radius:10px;margin-bottom:16px"><div class="tc-stars">★★★★★</div><p class="tc-text">"My daughter loves the children's class. She's more focused at school and so much calmer. Best decision we made for our family."</p><p class="tc-author">— Meena L., Doddanekkundi</p></div>
     </div>
   </section>
+
+  <!-- CTA Banner -->
+  <div class="fullwidth-banner">
+    <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=1400&auto=format&fit=crop&q=80" alt="yoga sunrise" loading="lazy">
+    <div class="fullwidth-banner-overlay"></div>
+    <div class="fullwidth-banner-content">
+      <h2>Begin your yoga journey today</h2>
+      <p>Join hundreds of ladies and children transforming their lives at PranaDhara YogaKendra, Bangalore</p>
+      <button class="btn-primary" onclick="showPage('book')">Book Your First Class 🙏</button>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-grid">
@@ -710,6 +836,10 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
         </div>
       </div>
       <div class="about-visual-card">
+        <div class="about-float-imgs" style="margin-bottom:24px">
+          <img class="afl-main" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=700&auto=format&fit=crop&q=80" alt="yoga practice" loading="lazy">
+          <img class="afl-accent" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&auto=format&fit=crop&q=80" alt="meditation" loading="lazy">
+        </div>
         <div class="avc-title">PranaDhara YogaKendra</div>
         <div class="avc-tagline">"Inhale peace, exhale stress."</div>
         <div class="avc-address">
@@ -742,8 +872,10 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
     <div class="section-tag">Our Instructor</div>
     <h2 class="section-title">Meet <em>Vijayashree</em></h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;align-items:center" class="about-instructor-grid">
-      <div style="background:white;border-radius:24px;padding:40px;border:2px solid var(--border);box-shadow:0 8px 32px rgba(249,115,22,0.1)">
-        <div style="font-size:64px;text-align:center;margin-bottom:20px">🧘‍♀️</div>
+      <div style="background:white;border-radius:24px;padding:0;border:2px solid var(--border);box-shadow:0 8px 32px rgba(249,115,22,0.1);overflow:hidden">
+        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&auto=format&fit=crop&q=80" alt="yoga instructor" loading="lazy" style="width:100%;height:220px;object-fit:cover">
+        <div style="padding:28px 28px 32px">
+        <div style="font-size:64px;text-align:center;margin-bottom:12px">🧘‍♀️</div>
         <h3 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--maroon);text-align:center;margin-bottom:4px">Vijayashree</h3>
         <p style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--saffron);text-align:center;margin-bottom:20px">Founder & Chief Yoga Instructor</p>
         <div style="background:var(--saffron-pale);border-radius:14px;padding:18px;border:1px solid var(--saffron-light)">
@@ -753,7 +885,7 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)"><span>📱</span><strong>86609 89217</strong></div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text)"><span>📱</span><strong>99455 93433</strong></div>
         </div>
-      </div>
+      </div><!-- close padding div -->
       <div>
         <h3 style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--maroon);margin-bottom:20px">Why students love learning with Vijayashree</h3>
         <div style="display:flex;flex-direction:column;gap:14px">
@@ -765,6 +897,29 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
       </div>
     </div>
   </section>
+
+  <!-- About Gallery Strip -->
+  <div class="photo-strip" style="height:300px">
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=500&auto=format&fit=crop&q=80" alt="group class" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=500&auto=format&fit=crop&q=80" alt="yoga flexibility" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=500&auto=format&fit=crop&q=80" alt="yoga stretch" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.healthshots.com/healthshots/en/uploads/2024/09/18210940/Twist-pose-2-Source-Adobestock1.jpg" alt="meditation" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.stockcake.com/public/b/b/4/bb44fca3-df7c-43fc-bbb2-022c5fe34181_large/yoga-practice-stockcake.jpg" alt="outdoor yoga" loading="lazy"></div>
+  </div>
+
+  <!-- About CTA Banner -->
+  <div class="fullwidth-banner">
+    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1400&auto=format&fit=crop&q=80" alt="yoga wellness" loading="lazy">
+    <div class="fullwidth-banner-overlay"></div>
+    <div class="fullwidth-banner-content">
+      <h2>Ready to transform your life?</h2>
+      <p>Join our welcoming community of ladies and children at PranaDhara YogaKendra, Marathahalii</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <button class="btn-primary" onclick="showPage('book')">Book a Class 🙏</button>
+        <button class="btn-white" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-grid">
@@ -779,10 +934,27 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
 
 <!-- ==================== CLASSES ==================== -->
 <div class="page" id="page-classes">
-  <section class="classes-hero">
+  <section class="classes-hero" style="position:relative;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=1400&auto=format&fit=crop&q=60" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.18;z-index:0">
+    <div style="position:relative;z-index:1">
     <div class="section-tag" style="background:rgba(255,255,255,0.15);color:white">Our Offerings</div>
     <h1>Classes for every<br><em>level & lifestyle.</em></h1>
     <p>Offline studio classes for ladies and children, plus a live online session every morning — find the schedule that works for you.</p>
+    </div>
+  </section>
+
+  <!-- Yoga Poses Grid -->
+  <section style="padding:56px 48px;background:var(--off-white)">
+    <div class="section-tag">Yoga Practices</div>
+    <h2 class="section-title">What we <em>teach</em></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px" class="pose-grid">
+      <div class="pose-card"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=500&auto=format&fit=crop&q=80" alt="hatha yoga" loading="lazy"><div class="pose-card-overlay"><div class="pose-card-name">Hatha Yoga</div><div class="pose-card-level">Foundation · All Levels</div></div></div>
+      <div class="pose-card"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&auto=format&fit=crop&q=80" alt="meditation" loading="lazy"><div class="pose-card-overlay"><div class="pose-card-name">Pranayama</div><div class="pose-card-level">Breathing · All Levels</div></div></div>
+      <div class="pose-card"><img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=500&auto=format&fit=crop&q=80" alt="flexibility" loading="lazy"><div class="pose-card-overlay"><div class="pose-card-name">Flexibility Flow</div><div class="pose-card-level">Stretch · All Levels</div></div></div>
+      <div class="pose-card"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&auto=format&fit=crop&q=80" alt="strength yoga" loading="lazy"><div class="pose-card-overlay"><div class="pose-card-name">Strength Yoga</div><div class="pose-card-level">Power · Intermediate</div></div></div>
+      <div class="pose-card"><img src="https://static.vecteezy.com/system/resources/thumbnails/076/760/586/small/woman-practicing-yoga-in-lotus-pose-with-hands-above-head-in-silhouette-photo.jpeg" alt="meditation" loading="lazy"><div class="pose-card-overlay"><div class="pose-card-name">Meditation</div><div class="pose-card-level">Mindfulness · All Levels</div></div></div>
+      <div class="pose-card"><img src="https://burst.shopifycdn.com/photos/athletic-woman-yoga-pose.jpg?width=1000&format=pjpg&exif=0&iptc=0" alt="outdoor yoga" loading="lazy"><div class="pose-card-overlay"><div class="pose-card-name">Restorative Yoga</div><div class="pose-card-level">Relaxation · Beginner</div></div></div>
+    </div>
   </section>
 
   <div class="class-modes">
@@ -804,20 +976,26 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
         </div>
       </div>
       <div class="offline-grid">
-        <div class="batch-card">
+        <div class="batch-card" style="padding:0;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=80" alt="morning yoga" loading="lazy" style="width:100%;height:160px;object-fit:cover">
+          <div style="padding:24px">
           <div class="batch-header"><span class="batch-title">🌅 Morning Batch</span><span class="batch-icon">☀️</span></div>
           <div class="batch-note">👩‍👧 Ladies and Children only</div>
           <div class="time-slots-list">
             <div class="time-slot-item"><div class="tsi-dot"></div><div><div class="tsi-time">7:50 AM – 8:50 AM</div><div class="tsi-label">Batch 1 · Mon to Sat</div></div></div>
             <div class="time-slot-item"><div class="tsi-dot"></div><div><div class="tsi-time">9:00 AM – 10:00 AM</div><div class="tsi-label">Batch 2 · Mon to Sat</div></div></div>
           </div>
+          </div>
         </div>
-        <div class="batch-card">
+        <div class="batch-card" style="padding:0;overflow:hidden">
+          <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&auto=format&fit=crop&q=80" alt="evening yoga" loading="lazy" style="width:100%;height:160px;object-fit:cover">
+          <div style="padding:24px">
           <div class="batch-header"><span class="batch-title">🌆 Evening Batch</span><span class="batch-icon">🌙</span></div>
           <div class="batch-note">👩‍👧 Ladies and Children only</div>
           <div class="time-slots-list">
             <div class="time-slot-item"><div class="tsi-dot" style="background:var(--gold)"></div><div><div class="tsi-time">4:50 PM – 5:50 PM</div><div class="tsi-label">Batch 3 · Mon to Sat</div></div></div>
             <div class="time-slot-item"><div class="tsi-dot" style="background:var(--gold)"></div><div><div class="tsi-time">6:00 PM – 7:00 PM</div><div class="tsi-label">Batch 4 · Mon to Sat</div></div></div>
+          </div>
           </div>
         </div>
       </div>
@@ -833,21 +1011,27 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
 
     <!-- ONLINE -->
     <div class="class-mode-section" id="mode-online">
-      <div class="online-card">
-        <h3>💻 Live Online Yoga Class</h3>
-        <p style="font-size:14px;color:rgba(109,40,217,0.7);margin-bottom:4px">Available to everyone — join from anywhere!</p>
-        <div class="online-time-big">5:00 AM – 6:00 AM</div>
-        <div class="online-note">Daily · Live session · All levels welcome</div>
-        <div class="qr-section">
-          <div class="qr-box">📱<br>Scan<br>QR</div>
-          <div class="qr-text">
-            <h4>Scan to join online classes</h4>
-            <p>Scan the QR code to register and get the link for daily live online yoga sessions with Vijayashree.</p>
-            <p style="margin-top:8px;font-weight:700;color:var(--purple)">Call to get the QR code:<br>86609 89217 · 99455 93433</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;align-items:stretch" class="online-grid-top">
+        <div class="online-card">
+          <h3>💻 Live Online Yoga Class</h3>
+          <p style="font-size:14px;color:rgba(109,40,217,0.7);margin-bottom:4px">Available to everyone — join from anywhere!</p>
+          <div class="online-time-big">5:00 AM – 6:00 AM</div>
+          <div class="online-note">Daily · Live session · All levels welcome</div>
+          <div class="qr-section">
+            <div class="qr-box">📱<br>Scan<br>QR</div>
+            <div class="qr-text">
+              <h4>Scan to join online classes</h4>
+              <p>Scan the QR code to register and get the link for daily live online yoga sessions with Vijayashree.</p>
+              <p style="margin-top:8px;font-weight:700;color:var(--purple)">Call to get the QR code:<br>86609 89217 · 99455 93433</p>
+            </div>
           </div>
         </div>
+        <div style="border-radius:20px;overflow:hidden;min-height:300px">
+          <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4a7?w=700&auto=format&fit=crop&q=80" alt="online yoga" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+        </div>
       </div>
-      <div style="margin-top:28px;background:white;border-radius:20px;padding:32px;border:1px solid var(--border);max-width:600px">
+      </div><!-- close online-grid-top -->
+      <div style="margin-top:0;background:white;border-radius:20px;padding:32px;border:1px solid var(--border);max-width:600px">
         <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--maroon);margin-bottom:16px">Why join the online class?</h3>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text)"><span style="font-size:20px">✅</span> Practice from the comfort of your home</div>
@@ -875,6 +1059,17 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
     </div>
   </div>
 
+  <!-- Classes CTA Banner -->
+  <div class="fullwidth-banner">
+    <img src="https://images.unsplash.com/photo-1510894347713-fc3dc6166086?w=1400&auto=format&fit=crop&q=80" alt="yoga outdoor" loading="lazy">
+    <div class="fullwidth-banner-overlay"></div>
+    <div class="fullwidth-banner-content">
+      <h2>Your mat is waiting</h2>
+      <p>Join a morning or evening batch at our Marathahalii studio — or go online at 5 AM from anywhere</p>
+      <button class="btn-primary" onclick="showPage('book')">Book a Class Today 🙏</button>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-grid">
       <div class="footer-brand"><div class="footer-logo-row"><div class="footer-logo-icon"><svg viewBox="0 0 22 22" fill="white"><path d="M11 1c-1.6 0-3 1.4-3 3s1.4 3 3 3 3-1.4 3-3-1.4-3-3-3zm0 6L5 11h12l-6-4zm-4 4l-1.5 6H9l.8-3h2.4l.8 3h3.5L15 11H7z"/></svg></div><span class="footer-name">PranaDhara YogaKendra</span></div><p class="footer-tagline">Inhale peace, exhale stress.</p><div class="footer-contact-pill">📞 <strong>86609 89217 · 99455 93433</strong></div></div>
@@ -888,7 +1083,18 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
 
 <!-- ==================== CONTACT ==================== -->
 <div class="page" id="page-contact">
-  <section class="contact-top">
+
+  <!-- Contact hero image strip -->
+  <div style="position:relative;height:220px;overflow:hidden;margin-top:74px">
+    <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=1400&auto=format&fit=crop&q=80" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,29,29,0.75),rgba(217,119,6,0.55))"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;text-align:center;padding:20px">
+      <div class="section-tag" style="background:rgba(255,255,255,0.15);color:white;margin-bottom:10px">Get In Touch</div>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,44px);font-weight:700">Contact <em style="font-style:italic;color:var(--saffron-light)">PranaDhara</em></h1>
+    </div>
+  </div>
+
+  <section class="contact-top" style="padding-top:48px">
     <div class="contact-inner">
       <div class="contact-left">
         <div class="section-tag">Get in Touch</div>
@@ -1004,11 +1210,23 @@ footer{background:var(--dark);padding:64px 48px 36px;color:white}
 
 <!-- ==================== BOOK ==================== -->
 <div class="page" id="page-book">
-  <section class="book-hero">
+  <section class="book-hero" style="position:relative;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=1400&auto=format&fit=crop&q=60" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.13;z-index:0">
+    <div style="position:relative;z-index:1">
     <div class="section-tag">Reserve Your Spot</div>
     <h1>Book your <em>yoga</em><br>session today.</h1>
     <p>Choose a date, pick your batch, and confirm your booking. Takes less than 2 minutes!</p>
+    </div>
   </section>
+
+  <!-- Photo strip under book hero -->
+  <div class="photo-strip" style="height:160px">
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&auto=format&fit=crop&q=80" alt="yoga" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&auto=format&fit=crop&q=80" alt="flexibility" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://t3.ftcdn.net/jpg/04/89/72/22/360_F_489722279_YPBHgCKlvAV0fKg1EqVa5FIlVlvAT2AE.jpg" alt="meditation" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&auto=format&fit=crop&q=80" alt="strength" loading="lazy"></div>
+    <div class="photo-strip-item"><img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=400&auto=format&fit=crop&q=80" alt="wellness" loading="lazy"></div>
+  </div>
 
   <div class="book-layout">
     <div>
